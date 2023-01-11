@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/update.css' %}">
+    <title>Update</title>
+</head>
+<body>
+
+
+   <h3> {{ pessoa.id}} - {{ pessoa.nome }}</h3>
+
+   <br>
+    <form action="{% url 'update' pessoa.id %}" method="post" class="formulario">
+        {% csrf_token %}
+        <input type="text" name="nome" class="css-input" value="{{pessoa.nome}}" required>
+        <button type="submit" class="botaoupdate">Atualizar</button>
+    </form>
+</body>
+</html>

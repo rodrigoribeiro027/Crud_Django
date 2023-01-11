@@ -1,0 +1,39 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pessoas</title>
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+</head>
+<body>
+    <h1 class="titulo" >Lista de Pessoas</h1>
+        <ul class="lista">
+            {% for pessoa in pessoas %}
+            <li class="Pessoa">
+                <div class="mae">
+                    <div class="nomePessoa">
+                        <h3 >
+                        {{pessoa.nome}} 
+                        </h3>
+                    </div>
+                    <div class="botoes">
+                        <a class="link" href="{% url 'editar' pessoa.id %}">Editar</a>
+                        <a class="link" href="{% url 'delete' pessoa.id %}">Deletar</a> 
+                    </div>
+                </div>
+            </li>
+            {% endfor %} 
+        </ul>
+    <br>
+    
+        <form  action="{% url 'salvar' %}" method="post" class="formulario">
+            {% csrf_token %}
+            <input type="text" name="nome" class="css-input" required>
+            <button class="enviarFormulario" type="submit">Enviar</button>
+        </form>
+    
+</body>
+</html>
